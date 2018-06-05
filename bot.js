@@ -26,9 +26,6 @@ bot.dialog('/', dialogRoot.dialog());
 bot.dialog('/getName', dialogGetName.dialog());
 
 server.post('/api/messages', connector.listen());
-
-
-
 server.post('/webhook', (req, res) => {  
  
     let body = req.body;
@@ -53,7 +50,6 @@ server.post('/webhook', (req, res) => {
     }
   
 });
-
 server.get('/webhook', (req, res) => {
 
     // Your verify token. Should be a random string.
