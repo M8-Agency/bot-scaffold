@@ -5,7 +5,7 @@ const dialog = () => {
         (session) => {
             session.send(`Hola`)
             session.beginDialog('/getName')
-        }
+        },
         (session, results) => {
             session.send(`Hola ${results.response}`)
        }        
