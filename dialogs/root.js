@@ -3,12 +3,16 @@ const builder = require('botbuilder');
 const dialog = () => {
     return [
         (session) => {
-            session.send(`Hola`)
-            session.beginDialog('/getName')
+            if(session.message.type == "message" && session.message.sourceEvent.postback){
+                session.beginDialog('/getStarted')    
+            }else{
+                session.send(`Hola`)
+                session.beginDialog('/getName')
+            }            
         },
         (session, results) => {
-            session.userData.name = results.response
-            session.send(`Hola ${results.response}`)
+            console.log(session.userData)
+            session.send(`Hola ${session.userData.fbData.first_name}`)
         }            
     ]
 }

@@ -40,6 +40,7 @@ const dialog = new builder.IntentDialog();
 
 bot.set('storage', cosmosStorage);
 bot.dialog('/', dialogRoot.dialog());
+bot.dialog('/getStarted', dialogGetStarted.dialog());
 bot.dialog('/getName', dialogGetName.dialog());
 
 dialog.matches('get_started', dialogGetStarted.dialog());
