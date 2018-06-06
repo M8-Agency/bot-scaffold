@@ -5,10 +5,10 @@ require('dotenv').load();
 const dialog = () => {
     return [
         (session, results, next) => {
-            
+            console.log('session.message', session.message)
             if(session.message.sourceEvent.postback){
-                if(message.sourceEvent.postback.referral){
-                    session.userData.market = message.sourceEvent.postback.referral.ref;
+                if(session.message.sourceEvent.postback.referral){
+                    session.userData.market = session.message.sourceEvent.postback.referral.ref;
                 }
             }
             //Recupero informacion de facebook
