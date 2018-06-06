@@ -8,6 +8,7 @@ const dialog = () => {
         },
         (session, results) => {
             session.userData.name = results.response
+            console.log(session.message);
             session.send(`Hola ${results.response}`)
         }            
     ]

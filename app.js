@@ -2,10 +2,11 @@ var restify = require('restify');
 var builder = require('botbuilder');
 var azure = require('botbuilder-azure'); 
 require('dotenv').load();
-
+//https://bot-scaffold.azurewebsites.net/api/messages
 //Dialogs
 const dialogRoot = require('./dialogs/root');
 const dialogGetName = require('./dialogs/getName');
+const dialogGetStarted = require('./dialogs/getStarted');
 
 //Configuración server
 var server = restify.createServer();
@@ -15,8 +16,7 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 
 var connector = new builder.ChatConnector({
   appId: process.env.MicrosoftAppId,
-  appPassword: process.env.MicrosoftAppPassword,
-  openIdMetadata: process.env.BotOpenIdMetadata
+  appPassword: process.env.MicrosoftAppPassword
 });
 
 server.post('/api/messages', connector.listen());
@@ -36,6 +36,10 @@ var docDbClient = new azure.DocumentDbClient(documentDbOptions);
 var cosmosStorage = new azure.AzureBotStorage({ gzipData: false }, docDbClient);
 
 const bot = new builder.UniversalBot(connector);
+const dialog = new builder.IntentDialog();
+
 bot.set('storage', cosmosStorage);
 bot.dialog('/', dialogRoot.dialog());
 bot.dialog('/getName', dialogGetName.dialog());
+
+dialog.matches('get_started', dialogGetStarted.dialog());
