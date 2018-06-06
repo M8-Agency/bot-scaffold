@@ -3,18 +3,10 @@ const builder = require('botbuilder');
 const dialog = () => {
     return [
         (session, results, next) => {
-            if(!session.userData.name){
-                builder.Prompts.text(session, `¿Como te llamas?`)
-            }else{
-                next();
-            }
-            
+            builder.Prompts.text(session, `¿Como te llamas?`)
         },
         (session, results) => {
-            if(results.response){
-                session.userData.name = results.response
-            }
-            session.endDialogWithResults(results)
+            session.endDialogWithResult(results)
         }
     ]
 }

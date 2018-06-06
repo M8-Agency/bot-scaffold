@@ -30,6 +30,6 @@ var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.
 var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
 
 const bot = new builder.UniversalBot(connector);
-bot.set('storage', tableStorage);
+//bot.set('storage', tableStorage);
 bot.dialog('/', dialogRoot.dialog());
 bot.dialog('/getName', dialogGetName.dialog());
