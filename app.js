@@ -1,6 +1,7 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 var azure = require('botbuilder-azure'); 
+require('dotenv').load();
 
 //Dialogs
 const dialogRoot = require('./dialogs/root');
@@ -26,8 +27,8 @@ server.post('/api/messages', connector.listen());
 * ---------------------------------------------------------------------------------------- */
 
 var documentDbOptions = {
-  host: 'bot-scaffold.documents.azure.com', 
-  masterKey: '4U7tD9zMNuScRRhYXphlQbJ7HfVJw4Ekj5FJGH85ZTUnO3L8qbkte5TJubd1NolrZuy2cZ9IoTRQH20tGmeQ1w==', 
+  host: process.env.DB_HOST, 
+  masterKey: process.env.DB_MASTER_KEY, 
   database: 'db',   
   collection: 'users'
 };

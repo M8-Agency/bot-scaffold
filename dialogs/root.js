@@ -7,6 +7,7 @@ const dialog = () => {
             session.beginDialog('/getName')
         },
         (session, results) => {
+            session.userData.name = results.response
             session.send(`Hola ${results.response}`)
         }            
     ]
