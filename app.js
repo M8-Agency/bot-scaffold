@@ -1,6 +1,6 @@
 var restify = require('restify');
 var builder = require('botbuilder');
-var botbuilder_azure = require("botbuilder-azure");
+var azure = require('botbuilder-azure'); 
 
 //Dialogs
 const dialogRoot = require('./dialogs/root');
@@ -25,11 +25,16 @@ server.post('/api/messages', connector.listen());
 * For samples and documentation, see: https://github.com/Microsoft/BotBuilder-Azure
 * ---------------------------------------------------------------------------------------- */
 
-var tableName = 'botdata';
-var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
-var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
+var documentDbOptions = {
+  host: 'bot-scaffold.documents.azure.com', 
+  masterKey: '4U7tD9zMNuScRRhYXphlQbJ7HfVJw4Ekj5FJGH85ZTUnO3L8qbkte5TJubd1NolrZuy2cZ9IoTRQH20tGmeQ1w==', 
+  database: 'db',   
+  collection: 'users'
+};
+var docDbClient = new azure.DocumentDbClient(documentDbOptions);
+var cosmosStorage = new azure.AzureBotStorage({ gzipData: false }, docDbClient);
 
 const bot = new builder.UniversalBot(connector);
-//bot.set('storage', tableStorage);
+bot.set('storage', cosmosStorage);
 bot.dialog('/', dialogRoot.dialog());
 bot.dialog('/getName', dialogGetName.dialog());
