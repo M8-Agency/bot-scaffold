@@ -2,16 +2,19 @@ const builder = require('botbuilder');
 
 const dialog = () => {
     return [
-        (session) => {
-            if(session.message.type == "message" && session.message.sourceEvent.postback){
-                session.beginDialog('/getStarted')    
+        (session, results, next) => {
+            if(!session.userData.fbData.first_name){
+                if(session.message.type == "message" && session.message.sourceEvent.postback){
+                    session.beginDialog('/getStarted') //Solicito los datos y guarde datos ref 
+                }else{
+                    session.beginDialog('/getFbData') //Solicito los datos desde fb
+                }
             }else{
-                session.send(`Hola`)
-                session.beginDialog('/getName')
-            }            
+                next();
+            }
+                        
         },
         (session, results) => {
-            console.log(session.userData)
             session.send(`Hola ${session.userData.fbData.first_name}`)
         }            
     ]
