@@ -5,7 +5,7 @@ require('dotenv').load();
 //https://bot-scaffold.azurewebsites.net/api/messages
 //Dialogs
 const dialogRoot = require('./dialogs/root');
-const dialogGetName = require('./dialogs/getName');
+const dialogGetFbData = require('./dialogs/getFbData');
 const dialogGetStarted = require('./dialogs/getStarted');
 
 //Configuración server
@@ -40,6 +40,7 @@ const dialog = new builder.IntentDialog();
 
 bot.set('storage', cosmosStorage);
 bot.dialog('/', dialogRoot.dialog());
-bot.dialog('/getName', dialogGetName.dialog());
+bot.dialog('/getStarted', dialogGetStarted.dialog());
+bot.dialog('/getFbData', dialogGetFbData.dialog());
 
-dialog.matches('get_started', dialogGetStarted.dialog());
+//dialog.matches('get_started', dialogGetStarted.dialog());
