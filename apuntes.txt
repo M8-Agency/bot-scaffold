@@ -9,3 +9,9 @@ curl -X GET "https://graph.facebook.com/v2.6/<PSID>?fields=first_name,last_name,
 Url para compartir:
 
 http://m.me/m8bots?ref=AR
+
+Configuracion de boton de inicio:
+
+https://graph.facebook.com/v2.6/me/messenger_profile?access_token=
+
+get_started:{↵    "payload":"get_started"↵  }
