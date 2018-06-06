@@ -3,7 +3,7 @@ const builder = require('botbuilder');
 const dialog = () => {
     return [
         (session, results, next) => {
-            if(!session.userData.fbData.first_name){
+            if(!session.userData.fbData){
                 if(session.message.type == "message" && session.message.sourceEvent.postback){
                     session.beginDialog('/getStarted') //Solicito los datos y guarde datos ref 
                 }else{
