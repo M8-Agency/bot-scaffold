@@ -1,0 +1,56 @@
+[
+    {
+        "title": "What is NodeJS?",
+        "answers": [
+            {
+                "title": "A Library",
+                "correct": false,
+                "botReply": "Nooo, NodeJS is not a Library!!"
+            },
+            {
+                "title": "A Framework",
+                "correct": false,
+                "botReply": "Noooooo, NodeJS is NOT a framework!!"
+            },
+            {
+                "title": "A JavaScript runtime",
+                "correct": true,
+                "botReply": "That's correct!!"
+            }
+        ]
+    },
+    {
+        "title": "Who is Bert Cooper?",
+        "answers": [
+            {
+                "title": "A writer",
+                "correct": false
+            },
+            {
+                "title": "An actor",
+                "correct": false
+            },
+            {
+                "title": "A fictional character",
+                "correct": true
+            }
+        ]
+    },
+    {
+        "title": "Who is Roger Sterling?",
+        "answers": [
+            {
+                "title": "A writer",
+                "correct": false
+            },
+            {
+                "title": "An actor",
+                "correct": false
+            },
+            {
+                "title": "A fictional character",
+                "correct": true
+            }
+        ]
+    }
+]

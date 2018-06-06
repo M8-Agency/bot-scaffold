@@ -7,8 +7,10 @@ const dialog = () => {
             session.beginDialog('/getName')
         },
         (session, results) => {
-            session.send(`Hola ${results.response}`)
-        }            
+            session.userData.userName = results.response;
+            session.send(`Okey ${results.response}, vamos a jugar`)
+            session.beginDialog('/questionsDialog')
+        }
     ]
 }
 

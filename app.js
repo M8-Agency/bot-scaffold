@@ -5,11 +5,12 @@ var botbuilder_azure = require("botbuilder-azure");
 //Dialogs
 const dialogRoot = require('./dialogs/root');
 const dialogGetName = require('./dialogs/getName');
+const questionsDialog = require('./dialogs/questionsDialog');
 
 //Configuración server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
-  console.log('%s listening to %s', server.name, server.url); 
+  console.log('%s listening to %s', server.name, server.url);
 });
 
 var connector = new builder.ChatConnector({
@@ -29,7 +30,11 @@ var tableName = 'botdata';
 var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
 var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
 
+// In memory storage for testing
+const inMemoryStorage = new builder.MemoryBotStorage();
+
 const bot = new builder.UniversalBot(connector);
-//bot.set('storage', tableStorage);
+bot.set('storage', inMemoryStorage);
 bot.dialog('/', dialogRoot.dialog());
 bot.dialog('/getName', dialogGetName.dialog());
+bot.dialog('/questionsDialog', questionsDialog.dialog());
